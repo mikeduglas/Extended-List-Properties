@@ -2,7 +2,7 @@
 Extended list control properties.  
   
 Short video demonstrating extended list properties:
-https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi  
+https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi?raw=true  
 
 ### Word wrap property
 Automatically wrap text in a cell to the next line when it reaches the end of a line or a specified margin.  
