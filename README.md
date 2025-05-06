@@ -69,6 +69,16 @@ lstStudents.BeforeDrawCell    PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
   RETURN TRUE
 ```
 
+### Custom drawing: marked rows
+Mark list rows according to some criterion.
+```
+lstLanguages.AfterDrawRow     PROCEDURE(LONG pRow, TRect pRowRect)
+  CODE
+  IF languages.Language = 'Russian'
+    SELF.MarkRow(pRowRect)
+  END
+```
+
 ### Custom drawing: multi row images
 Display an image associated with a group of records.  
 ![image](https://github.com/user-attachments/assets/9273b95c-a4ea-4e6b-9225-4ca9de033a91)
