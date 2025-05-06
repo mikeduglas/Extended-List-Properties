@@ -1,17 +1,17 @@
 # Extended List Properties
-Extended list control properties.  
+The class supports extended list control properties, like word wrap and unicode. It also allows to customize the entire list, the rows, the columns, or the individual cells. It works in C6.3 and newer Clarion versions.  
   
-Short video demonstrating extended list properties:
-https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi?raw=true  
-
-### Word wrap property
-Automatically wrap text in a cell to the next line when it reaches the end of a line or a specified margin.  
-![Word wrap property](https://github.com/user-attachments/assets/d3f06911-7a47-4a6b-a9b1-29e2621bfd51)
-
-### Word wrap + reduced font size
-If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.  
-![Word wrap + reduced font size](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
+It supports both hand coded lists and standard browse boxes (ABC and Clarion template chains). All you need is to declare a class instance and set up initialization options:
 ```
+!- Employees list
+lstEmployees                  CLASS(TListboxExtProps)
+Init                            PROCEDURE(SIGNED pListFeq, QUEUE pFromQ), DERIVED
+                              END
+
+  CODE
+  OPEN(Window)
+  lstEmployees.Init(?lstEmployees, employees)
+
 lstEmployees.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
 extProps                        LIKE(typExtListProps), AUTO
   CODE
@@ -34,7 +34,19 @@ extProps                        LIKE(typExtListProps), AUTO
   extProps.nColumn = 4        !- post column
   extProps.bWordWrap = TRUE
   SELF.SetExtListProps(extProps)
+
 ```
+  
+Here is a short video:
+https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi?raw=true  
+
+### Word wrap property
+Automatically wrap text in a cell to the next line when it reaches the end of a line or a specified margin.  
+![Word wrap property](https://github.com/user-attachments/assets/d3f06911-7a47-4a6b-a9b1-29e2621bfd51)
+
+### Word wrap + reduced font size
+If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.  
+![Word wrap + reduced font size](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
 
 ### Unicode property
 Enables unicode (UTF8 and UTF16).  
@@ -109,4 +121,5 @@ lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
   RETURN TRUE
 ```
 
-###
+### Contacts
+mikeduglas@yandex.ru
