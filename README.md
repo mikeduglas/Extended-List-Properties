@@ -1,13 +1,16 @@
 # Extended List Properties
-Extended list control properties.
+Extended list control properties.  
+  
+Short video demonstrating extended list properties:
+https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi  
 
 ### Word wrap property
 Automatically wrap text in a cell to the next line when it reaches the end of a line or a specified margin.  
-![image](https://github.com/user-attachments/assets/d3f06911-7a47-4a6b-a9b1-29e2621bfd51)
+![Word wrap property](https://github.com/user-attachments/assets/d3f06911-7a47-4a6b-a9b1-29e2621bfd51)
 
 ### Word wrap + reduced font size
 If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.  
-![image](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
+![Word wrap + reduced font size](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
 ```
 lstEmployees.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
 extProps                        LIKE(typExtListProps), AUTO
@@ -35,7 +38,7 @@ extProps                        LIKE(typExtListProps), AUTO
 
 ### Unicode property
 Enables unicode (UTF8 and UTF16).  
-![image](https://github.com/user-attachments/assets/e40f8555-30d7-4cad-a21c-b1bea74f1819)
+![Unicode](https://github.com/user-attachments/assets/e40f8555-30d7-4cad-a21c-b1bea74f1819)
 ```
 lstLanguages.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
 extProps                        LIKE(typExtListProps), AUTO
@@ -53,7 +56,7 @@ extProps                        LIKE(typExtListProps), AUTO
 
 ### Custom drawing: bar chart
 Display numeric column values as bars.  
-![image](https://github.com/user-attachments/assets/c9b65a42-b2bc-430f-9bc9-5bcea196f9b4)
+![bar chart](https://github.com/user-attachments/assets/c9b65a42-b2bc-430f-9bc9-5bcea196f9b4)
 ```
 lstStudents.BeforeDrawCell    PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor, LONG pTextColor, | 
                                       *TLogicalFont pFont, *STRING pText, *STRING pPicture, |
@@ -71,7 +74,7 @@ lstStudents.BeforeDrawCell    PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
 
 ### Custom drawing: marked rows
 Mark list rows according to some criterion.  
-![image](https://github.com/user-attachments/assets/0d6d2c78-d2f3-4e6c-9827-4a3ded88a76c)
+![marked rows](https://github.com/user-attachments/assets/0d6d2c78-d2f3-4e6c-9827-4a3ded88a76c)
 ```
 lstLanguages.AfterDrawRow     PROCEDURE(LONG pRow, TRect pRowRect)
   CODE
@@ -82,7 +85,7 @@ lstLanguages.AfterDrawRow     PROCEDURE(LONG pRow, TRect pRowRect)
 
 ### Custom drawing: multi row images
 Display an image associated with a group of records.  
-![image](https://github.com/user-attachments/assets/9273b95c-a4ea-4e6b-9225-4ca9de033a91)
+![multi row images](https://github.com/user-attachments/assets/9273b95c-a4ea-4e6b-9225-4ca9de033a91)
 ```
 lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor, LONG pTextColor, *TLogicalFont pFont, *STRING pText, *STRING pPicture, |
                                       *TRect pCellRect, *TRect pTextRect, *LONG pFormat, *LONG pCodePage)
@@ -106,3 +109,4 @@ lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
   RETURN TRUE
 ```
 
+###
