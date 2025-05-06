@@ -6,7 +6,7 @@ Automatically wrap text in a cell to the next line when it reaches the end of a 
 ![image](https://github.com/user-attachments/assets/d3f06911-7a47-4a6b-a9b1-29e2621bfd51)
 
 ### Word wrap + reduced font size
-If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.
+If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.  
 ![image](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
 
 ### Unicode property
