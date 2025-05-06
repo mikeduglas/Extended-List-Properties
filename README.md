@@ -70,7 +70,8 @@ lstStudents.BeforeDrawCell    PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
 ```
 
 ### Custom drawing: marked rows
-Mark list rows according to some criterion.
+Mark list rows according to some criterion.  
+![image](https://github.com/user-attachments/assets/1f8d52c0-a772-42cd-baff-780d6aa9bb56)
 ```
 lstLanguages.AfterDrawRow     PROCEDURE(LONG pRow, TRect pRowRect)
   CODE
