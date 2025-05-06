@@ -8,16 +8,90 @@ Automatically wrap text in a cell to the next line when it reaches the end of a 
 ### Word wrap + reduced font size
 If a text does not fit into a cell even with the word wrap option enabled, the font size will be reduced to fit the text in the cell.  
 ![image](https://github.com/user-attachments/assets/0f7d744e-7f37-4b92-9f0c-91341c0afa0e)
+```
+lstEmployees.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
+extProps                        LIKE(typExtListProps), AUTO
+  CODE
+  PARENT.Init(pListFeq, pFromQ)
+  
+  !- make rows a bit higher
+  SELF.FEQ{PROP:LineHeight} = 24
+
+  !- overwrite column behavior
+  CLEAR(extProps)
+  extProps.nColumn = 2        !- name column
+  extProps.bWordWrap = TRUE
+  SELF.SetExtListProps(extProps)
+  CLEAR(extProps)
+  extProps.nColumn = 3        !- address column
+  extProps.bWordWrap = TRUE
+  extProps.nMinFontSize = 6   !- min reduced font size
+  SELF.SetExtListProps(extProps)
+  CLEAR(extProps)
+  extProps.nColumn = 4        !- post column
+  extProps.bWordWrap = TRUE
+  SELF.SetExtListProps(extProps)
+```
 
 ### Unicode property
 Enables unicode (UTF8 and UTF16).  
 ![image](https://github.com/user-attachments/assets/e40f8555-30d7-4cad-a21c-b1bea74f1819)
+```
+lstLanguages.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
+extProps                        LIKE(typExtListProps), AUTO
+  CODE
+  PARENT.Init(pListFeq, pFromQ)
+  !- make rows a bit higher
+  SELF.FEQ{PROP:LineHeight} = 24
+  !- enable word wrap and unicode (UTF8) options in "Phrase" column
+  CLEAR(extProps)
+  extProps.nColumn = 2
+  extProps.bWordWrap = TRUE
+  extProps.nCodePage = CP_UTF8
+  SELF.SetExtListProps(extProps)
+```
 
 ### Custom drawing: bar chart
 Display numeric column values as bars.  
 ![image](https://github.com/user-attachments/assets/c9b65a42-b2bc-430f-9bc9-5bcea196f9b4)
+```
+lstStudents.BeforeDrawCell    PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor, LONG pTextColor, | 
+                                      *TLogicalFont pFont, *STRING pText, *STRING pPicture, |
+                                      *TRect pCellRect, *TRect pTextRect, *LONG pFormat, *LONG pCodePage)
+  CODE
+  IF pColumn = 4  !- Height
+    IF bHeightAsBar
+      SELF.DrawHeightBar(pRow, pCellRect)   !- draw bar chart
+      RETURN FALSE                          !- FALSE means don't draw the cell text
+    END
+  END
+  
+  RETURN TRUE
+```
 
 ### Custom drawing: multi row images
 Display an image associated with a group of records.  
 ![image](https://github.com/user-attachments/assets/9273b95c-a4ea-4e6b-9225-4ca9de033a91)
+```
+lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor, LONG pTextColor, *TLogicalFont pFont, *STRING pText, *STRING pPicture, |
+                                      *TRect pCellRect, *TRect pTextRect, *LONG pFormat, *LONG pCodePage)
+  CODE
+  IF pColumn = 1
+    CASE songs.TrackNumber 
+    OF 1 TO 2
+      !- Display album title and artist name in first 2 rows, just above the album image.
+      pText = CHOOSE(songs.TrackNumber, songs.Album, songs.Artist)
+      SELF.DrawText(pText, pPicture, pTextRect, pFormat + DT_CALCRECT, pCodePage)
+      SELF.AdjustTextRect(pColumn, pCellRect, pTextRect)
+      SELF.dc.SetTextColor(COLOR:Green)
+      RETURN TRUE
+    ELSE
+      !- Display the image starting from the 3rd row.
+      SELF.DrawAlbumImage(pCellRect, songs.TrackNumber-2)
+      RETURN FALSE
+    END
+  END
+  
+  RETURN TRUE
+```
 
