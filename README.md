@@ -121,5 +121,11 @@ lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
   RETURN TRUE
 ```
 
+### Requirements
+Clarion 6.3 and newer, ABC/Clarion
+
 ### Contacts
 mikeduglas@yandex.ru
+
+### Price
+Negotiable
