@@ -1,5 +1,5 @@
 # Extended List Properties
-The class supports extended list control properties, like word wrap and unicode. It also allows to customize the entire list, the rows, the columns, or the individual cells. It works in C6.3 and newer Clarion versions.  
+The class supports extended list control properties, like word wrap, unicode, hot tracking. It also allows to customize the entire list, the rows, the columns, or the individual cells. It works in C6.3 and newer Clarion versions.  
   
 It supports both hand coded lists and standard browse boxes (ABC and Clarion template chains). All you need is to declare a class instance and set up initialization options:
 ```
@@ -13,7 +13,6 @@ Init                            PROCEDURE(SIGNED pListFeq, QUEUE pFromQ), DERIVE
   lstEmployees.Init(?lstEmployees, employees)
 
 lstEmployees.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
-extProps                        LIKE(typExtListProps), AUTO
   CODE
   PARENT.Init(pListFeq, pFromQ)
   
@@ -21,24 +20,14 @@ extProps                        LIKE(typExtListProps), AUTO
   SELF.FEQ{PROP:LineHeight} = 24
 
   !- overwrite column behavior
-  CLEAR(extProps)
-  extProps.nColumn = 2        !- name column
-  extProps.bWordWrap = TRUE
-  SELF.SetExtListProps(extProps)
-  CLEAR(extProps)
-  extProps.nColumn = 3        !- address column
-  extProps.bWordWrap = TRUE
-  extProps.nMinFontSize = 6   !- min reduced font size
-  SELF.SetExtListProps(extProps)
-  CLEAR(extProps)
-  extProps.nColumn = 4        !- post column
-  extProps.bWordWrap = TRUE
-  SELF.SetExtListProps(extProps)
+  SELF.EnableWordWrap(2, TRUE)    !- name column
+  SELF.EnableWordWrap(3, TRUE, 6) !- address column
+  SELF.EnableWordWrap(4, TRUE)    !- post column
 
 ```
   
 Here is a short video:
-https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/video_1333157834.avi?raw=true  
+https://github.com/mikeduglas/Extended-List-Properties/blob/master/video/extlistprops.avi?raw=true  
 
 ### Word wrap property
 Automatically wrap text in a cell to the next line when it reaches the end of a line or a specified margin.  
@@ -53,17 +42,22 @@ Enables unicode (UTF8 and UTF16).
 ![Unicode](https://github.com/user-attachments/assets/e40f8555-30d7-4cad-a21c-b1bea74f1819)
 ```
 lstLanguages.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
-extProps                        LIKE(typExtListProps), AUTO
   CODE
   PARENT.Init(pListFeq, pFromQ)
+  
   !- make rows a bit higher
   SELF.FEQ{PROP:LineHeight} = 24
+  
   !- enable word wrap and unicode (UTF8) options in "Phrase" column
-  CLEAR(extProps)
-  extProps.nColumn = 2
-  extProps.bWordWrap = TRUE
-  extProps.nCodePage = CP_UTF8
-  SELF.SetExtListProps(extProps)
+  SELF.EnableWordWrap(2, TRUE)    !- Phrase column
+  SELF.EnableUnicode(2, CP_UTF8)  !- Phrase column
+```
+
+### Hot tracking
+List rows can be hot tracked when end-users hover over them.  
+```
+  lstEmployees.EnableHotRow(Color:DarkGray)                 !- dark gray background while hot tracking.
+  lstSongs.EnableHotRow(COLOR:NONE, COLOR:Blue, FONT:bold)  !- blue bold text while hot tracking.
 ```
 
 ### Custom drawing: bar chart
