@@ -1,5 +1,5 @@
 # Extended List Properties
-The class supports extended list control properties, like word wrap, unicode, hot tracking. It also allows to customize the entire list, the rows, the columns, or the individual cells. It works in C6.3 and newer Clarion versions.  
+The class supports extended list control properties, like word wrap, unicode, hyperlink, hot tracking. It also allows to customize the entire list, the rows, the columns, or the individual cells. It works in C6.3 and newer Clarion versions.  
   
 It supports both hand coded lists and standard browse boxes (ABC and Clarion template chains). All you need is to declare a class instance and set up initialization options:
 ```
@@ -52,6 +52,9 @@ lstLanguages.Init             PROCEDURE(SIGNED pListFeq, QUEUE pFromQ)
   SELF.EnableWordWrap(2, TRUE)    !- Phrase column
   SELF.EnableUnicode(2, CP_UTF8)  !- Phrase column
 ```
+
+### Hyperlink property
+Columns can be defined as hyperlinks.
 
 ### Hot tracking
 List rows can be hot tracked when end-users hover over them.  
@@ -122,4 +125,7 @@ Clarion 6.3 and newer, ABC/Clarion
 mikeduglas@yandex.ru
 
 ### Price
-Negotiable
+Negotiable  
+[Buy now](### Price
+Negotiable  
+[Buy now](https://www.clarionshop.com/checkout.cfm?pid=1707&q=1)
