@@ -126,6 +126,4 @@ mikeduglas@yandex.ru
 
 ### Price
 Negotiable  
-[Buy now](### Price
-Negotiable  
 [Buy now](https://www.clarionshop.com/checkout.cfm?pid=1707&q=1)
