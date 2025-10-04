@@ -118,6 +118,10 @@ lstSongs.BeforeDrawCell       PROCEDURE(LONG pColumn, LONG pRow, LONG pBackColor
   RETURN TRUE
 ```
 
+### Custom drawing: blurred cells
+Display blurred cell texts for sensitive data.  
+![blurred cell texts](https://github.com/mikeduglas/Extended-List-Properties/blob/master/screenshots/blurredcelltext.jpg?raw=true)  
+
 ### Requirements
 Clarion 6.3 and newer, ABC/Clarion
 
